@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(235, 244, 252);
+}
+
+.container1 {
+    margin: auto;
+    max-width: 90vw;
+}
+
+.contain1 {
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 2px 20px;
+    max-width: 80vw;
+    border: 1px solid #000;
+    border-radius: 30px;
+    align-items: center;
+}
+
+.contain {
+    margin: auto;
+    margin-top: 10px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding: 2px 20px;
+    max-width: 80vw;
+    border: 1px solid #000;
+    border-radius: 30px;
+    align-items: baseline;
+}
+
+.left {
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+}
+
+.right {
+    margin: auto;
+    padding: 20px;
+}
+
+input {
+    width: 70%;
+    border-radius: 10px;
+    background: local;
+}
