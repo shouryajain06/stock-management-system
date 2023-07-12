@@ -17,7 +17,8 @@ export async function POST(request) {
         quantity: newQuantity
       },
     };
-    const result = await inventory.updateOne(filter, updateDoc, {});
+    console.log(updateDoc)
+    const result = await inventory.updateOne(filter, updateDoc, { new: true });
 
     return NextResponse.json({ success: true, message: `${result.matchedCount} document(s) matched the filter, updated ${result.modifiedCount} document(s)` })
   }
