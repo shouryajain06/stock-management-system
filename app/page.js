@@ -1,6 +1,9 @@
 "use client"
 import Header from '@/components/Header'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function Home() {
@@ -48,10 +51,12 @@ export default function Home() {
 
       if (response.ok) {
         // Item deleted successfully
+        notify("Your Product has been deleted!")
         setAlert("Your Product has been deleted!");
 
       } else {
         // Handle error case
+        notify("Error deleting product")
         console.error('Error deleting product');
       }
     } else if (action == "plus") {
@@ -98,8 +103,8 @@ export default function Home() {
 
       if (response.ok) {
         // Product added successfully
-        setAlert("Your Product has been added!")
         setProductForm({})
+        notify("Your Product has been added!")
       } else {
         // Handle error case
         console.error('Error adding product');
@@ -133,13 +138,13 @@ export default function Home() {
       setDropdown([])
     }
   }
-
+  const notify = (msg) => toast(msg);
   return (
     <>
       <Header />
+      <ToastContainer position="top-right" autoClose={3000} type="success" />
       <div className='contain1'>
         <div className="container mx-auto my-8">
-          <div className='text-green-800 text-center'>{alert}</div>
           <h1 className="text-3xl font-semibold mb-6">Search a Product</h1>
           <div className="flex mb-2">
             <input onChange={onDropdownEdit} type="text" placeholder="Enter a product name" className="flex-1 border border-gray-300 px-4 py-2 rounded-l-md" />
@@ -204,7 +209,7 @@ export default function Home() {
 
         <div className="container  my-8 mx-auto">
           <div className='right'>
-            <h1 className="text-3xl font-semibold mb-6">Display Current Stock</h1>
+            <h1 className="text-3xl font-semibold mb-6">Current Stock</h1>
             <table className="table-auto w-full">
               <thead>
                 <tr>
@@ -214,7 +219,6 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {console.log(products)}
                 {products?.map(product => {
                   return <tr key={product.slug}>
                     <td className="border px-4 py-2">{product.slug}</td>
