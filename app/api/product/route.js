@@ -61,7 +61,13 @@ export async function GET(request) {
           const inventory = database.collection('inventory');
           // Query for a movie that has the title 'Back to the Future'
           const query = {  };
-          const Product= await inventory.insertOne(body)
+          const products=await inventory.findOne({slug:body.slug})
+          let Product={}
+          if (products){
+             Product=await inventory.updateOne({_id:products._id},{$set:{"quantity":body.quantity,"price":body.price}},{new:true})
+          }else{
+             Product= await inventory.insertOne(body)
+          }
           return NextResponse.json({Product})
         } finally {
           // Ensures that the client will close when you finish/error
